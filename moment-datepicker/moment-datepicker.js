@@ -94,6 +94,7 @@
             this.startViewMode = this.viewMode;
             this.weekStart = options.weekStart || this.element.data('datepicker-weekstart') || 0;
             this.weekEnd = this.weekStart === 0 ? 6 : this.weekStart - 1;
+            this.onRender = options.onRender;
             this.fillDow();
             this.fillMonths();
             this.setCustomClasses();
@@ -294,7 +295,7 @@
                     if (prevMonth.day() === this.weekStart) {
                         html.push('<tr>');
                     }
-                    clsName = '';
+                    clsName = this.onRender(prevMonth);
                     //TODO: use diff
                     if (prevMonth.year() < year || (prevMonth.year() == year && prevMonth.month() < month)) {
                         clsName += ' old';
@@ -308,7 +309,7 @@
                     if (prevMonth.valueOf() < this.startDate || prevMonth.valueOf() > this.endDate) {
                         clsName += ' disabled';
                     }
-                    html.push('<td class="day' + clsName + '">' + prevMonth.date() + '</td>');
+                    html.push('<td class="day ' + clsName + '">' + prevMonth.date() + '</td>');
                     if (prevMonth.day() === this.weekEnd) {
                         html.push('</tr>');
                     }
@@ -454,7 +455,10 @@
         };
 
         $.fn.datepicker.defaults = {
-        	container : 'body'
+        	container : 'body',
+            onRender: function(date) {
+                return "";
+            }
         };
         $.fn.datepicker.Constructor = Datepicker;
 
