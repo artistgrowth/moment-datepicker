@@ -309,7 +309,7 @@
                     if (prevMonth.valueOf() < this.startDate || prevMonth.valueOf() > this.endDate) {
                         clsName += ' disabled';
                     }
-                    html.push('<td class="day' + clsName + '">' + prevMonth.date() + '</td>');
+                    html.push('<td class="day ' + clsName + '">' + prevMonth.date() + '</td>');
                     if (prevMonth.day() === this.weekEnd) {
                         html.push('</tr>');
                     }
