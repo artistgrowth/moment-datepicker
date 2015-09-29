@@ -101,6 +101,13 @@
                         accessor(value);
                     }
                 });
+
+                ko.utils.domNodeDisposal.addDisposeCallback(element, function() {
+                    var data = $el.data("datepicker");
+                    if (data && data.picker instanceof jQuery) {
+                        data.picker.remove();
+                    }
+                });
             },
             update: function (element, valueAccessor) {
                 elBinder($(element))
