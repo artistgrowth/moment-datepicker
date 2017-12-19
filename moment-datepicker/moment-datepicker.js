@@ -282,11 +282,12 @@
                 this.picker.find('.datepicker-days th:eq(1)')
     						.text(moment.localeData().months(moment().month(month)) + ' ' + year);
 
-                var prevMonth = moment([year, month, 0]);
+                var prevMonth = moment([year, month, 1]);
                 prevMonth.day(prevMonth.day() - (prevMonth.day() - this.weekStart + 7) % 7);
 
                 //TODO: use diff
-                var nextMonthVal = moment(prevMonth).add(42, "days").valueOf();
+                var monthExpanded = 7 * 6; // 6 weeks to encompass the entire possible month space
+                var nextMonthVal = moment(prevMonth).add(monthExpanded, "days").valueOf();
 
                 html = [];
                 var clsName;
